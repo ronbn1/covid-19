@@ -1,26 +1,44 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect, useContext } from "react";
+import styled from "styled-components";
+import Cards from "./components/Cards/Cards";
+import Control from "./components/Control/Control";
+import IsraelStatistic from "./components/IsraelStatistic/IsraelStatistic";
+import Context from "./store/Context";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+   const context = useContext(Context);
+   useEffect(() => {
+      context.fetchAndStore();
+   }, [context.isLoading]);
+
+   return (
+      <Container>
+         <h1>Covid-19 Statistics</h1>
+         <IsraelStatistic />
+         <Control />
+         <Cards />
+      </Container>
+   );
 }
+const Container = styled.div`
+   display: flex;
+   height: 100vh;
+   max-width: 70vw;
+   margin: 0 auto;
+   flex-direction: column;
+   h1 {
+      color: #eeeeee;
+      text-align: center;
+      padding: 1em;
+   }
+   @media (max-width: 600px) {
+      max-width: 100vw;
+      margin: 0;
+      h1 {
+         padding: 1.8em;
+         padding-bottom: 1em;
+      }
+   }
+`;
 
 export default App;
