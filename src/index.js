@@ -5,10 +5,10 @@ import GlobalStyles from "./style/GlobalStyles";
 import ContextProvider from "./store/ContextProvider";
 ReactDOM.render(
    <ContextProvider>
-      {/* <React.StrictMode> */}
-      <GlobalStyles />
-      <App />
-      {/* </React.StrictMode> */}
+      <React.StrictMode>
+         <GlobalStyles />
+         <App />
+      </React.StrictMode>
    </ContextProvider>,
    document.getElementById("root")
 );

@@ -41,7 +41,11 @@ const Model = ({ closeModel, data }) => {
       let temp = day + "/" + month;
       allData[last].record_date = temp;
       allData[last].new_cases = convertToInt(allData[last].new_cases);
-      allData[last].new_deaths = convertToInt(allData[last].new_deaths);
+      if (allData[last].country_name === "Israel") {
+         allData[last].new_deaths = convertToInt(allData[last].new_deaths);
+      } else {
+         allData[last].total_deaths = convertToInt(allData[last].total_deaths);
+      }
       allData[last].serious_critical = convertToInt(
          allData[last].serious_critical
       );
@@ -62,7 +66,11 @@ const Model = ({ closeModel, data }) => {
          temp = day + "/" + month;
          allData[i].record_date = temp;
          allData[i].new_cases = convertToInt(allData[i].new_cases);
-         allData[i].new_deaths = convertToInt(allData[i].new_deaths);
+         if (allData[last].country_name === "Israel") {
+            allData[i].new_deaths = convertToInt(allData[i].new_deaths);
+         } else {
+            allData[i].total_deaths = convertToInt(allData[i].total_deaths);
+         }
          allData[i].serious_critical = convertToInt(
             allData[i].serious_critical
          );
@@ -72,6 +80,7 @@ const Model = ({ closeModel, data }) => {
 
       setCountryData(dataToShow);
       setLoading(false);
+      console.log(dataToShow);
    };
 
    useEffect(() => {
@@ -123,7 +132,7 @@ const Model = ({ closeModel, data }) => {
                   </span>
                   <span
                      onClick={() => setChartDataBy("total_deaths")}
-                     className={chartDataBy === "new_deaths" && "active"}
+                     className={chartDataBy === "total_deaths" && "active"}
                   >
                      Deaths
                   </span>
@@ -147,12 +156,12 @@ const Model = ({ closeModel, data }) => {
 };
 
 const Container = styled.div`
-   position: absolute;
+   position: fixed;
    display: flex;
    flex-direction: column;
    justify-content: center;
    align-items: center;
-
+   top: 50%;
    left: 50%;
    transform: translate(-50%, -50%);
    background-color: #eee;
