@@ -61,7 +61,6 @@ const Model = ({ closeModel, data }) => {
          day = allData[i].record_date.slice(8, 10);
          temp = day + "/" + month;
          allData[i].record_date = temp;
-         console.log(allData[i].new_cases);
          allData[i].new_cases = convertToInt(allData[i].new_cases);
          allData[i].new_deaths = convertToInt(allData[i].new_deaths);
          allData[i].serious_critical = convertToInt(
@@ -72,9 +71,7 @@ const Model = ({ closeModel, data }) => {
       }
 
       setCountryData(dataToShow);
-      console.log(dataToShow);
       setLoading(false);
-      console.log("model");
    };
 
    useEffect(() => {

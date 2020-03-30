@@ -9,7 +9,6 @@ const IsraelStatistic = () => {
    const [modelIsOpen, setModelIsOpen] = useState(false);
 
    useEffect(() => {
-      console.log("israel");
       if (!context.isLoading) {
          const israel = context.dataByCountry.filter(
             c => c.country_name === "Israel"
