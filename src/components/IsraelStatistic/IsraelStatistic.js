@@ -23,7 +23,7 @@ const IsraelStatistic = () => {
             <Model closeModel={() => setModelIsOpen(false)} data={israelData} />
          ) : null}
          <div className="header">
-            <h2>Israel Statistic</h2>
+            <h2>Israel's Statistics</h2>
             <i
                className="fas fa-chart-line "
                onClick={() => setModelIsOpen(true)}
